@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import '../App.css';
+import axios from 'axios'
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
@@ -12,6 +13,9 @@ import { withStyles } from '@material-ui/core/styles';
 import withRoot from '../withRoot';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import ItemsCarousel from 'react-items-carousel';
+
+import SlideItem from '../components/slide-item'
 
 const styles = theme => ({
   root: {
@@ -76,13 +80,19 @@ const styles = theme => ({
 class Index extends React.Component {
   state = {
     open: false,
+    featureList: [],
+    children: [],
+    activeItemIndex: 0,
   };
 
-  handleClose = () => {
+  async componentDidMount() {
+    const featureShows = await axios.get('https://api.themoviedb.org/3/tv/46648/recommendations?api_key=f8619d56f06b43eb341fd3d7340727fb&language=en-US&page=1')
+    console.log(featureShows.data.results[0])
+    console.log(this.state.featureList)
     this.setState({
-      open: false,
-    });
-  };
+      featureList: featureShows.data.results[0]
+    })
+  }
 
   handleClick = () => {
     this.setState({
@@ -92,7 +102,17 @@ class Index extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { open } = this.state;
+    const { open, activeItemIndex, featureList } = this.state;
+
+    // const feature = featureList.map((series, i) => {
+    //   return (
+    //     <SlideItem
+    //       key={i}
+    //       title={series.name}
+    //       image={series.poster_path}
+    //       body={series.date}
+    //     />)
+    // })
 
     return (
       <Router>
@@ -103,7 +123,7 @@ class Index extends React.Component {
                 <MenuIcon />
               </IconButton>
               <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-                Material-UI
+                Deep Dive
           </Typography>
               <div className={classes.grow} />
               <div className={classes.search}>
@@ -120,6 +140,35 @@ class Index extends React.Component {
               </div>
             </Toolbar>
           </AppBar>
+          
+          <div>
+            {/* {feature} */}
+          </div>
+          {/* <ItemsCarousel
+            numberOfCards={3}
+            freeScrolling={false}
+            showSlither={false}
+            slidesToScroll={1}
+            firstAndLastGutter={false}
+            gutter={10}
+
+            enablePlaceholder
+            minimumPlaceholderTime={2000}
+            numberOfPlaceholderItems={6}
+            appShellItem={<PlaceholderComponent />}
+
+            rightChevron={'>'}
+            leftChevron={'<'}
+            chevronWidth={20}
+            outsideChevron={true}
+
+            springConfig={{ "stiffness": 120, "damping": 14 }}
+
+            requestToChangeActive={() => this.setState({ activeItemIndex })}
+            activeItemIndex={activeItemIndex}
+            activePosition={'left'}
+            children={}
+          /> */}
         </div>
       </Router>
     );
