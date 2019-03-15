@@ -13,6 +13,8 @@ import { withStyles } from '@material-ui/core/styles';
 import withRoot from '../withRoot';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 import ItemsCarousel from 'react-items-carousel';
 
 import SlideItem from '../components/slide-item'
@@ -87,10 +89,9 @@ class Index extends React.Component {
 
   async componentDidMount() {
     const featureShows = await axios.get('https://api.themoviedb.org/3/tv/46648/recommendations?api_key=f8619d56f06b43eb341fd3d7340727fb&language=en-US&page=1')
-    console.log(featureShows.data.results[0])
-    console.log(this.state.featureList)
+    console.log(featureShows.data.results)
     this.setState({
-      featureList: featureShows.data.results[0]
+      featureList: featureShows.data.results
     })
   }
 
@@ -104,15 +105,15 @@ class Index extends React.Component {
     const { classes } = this.props;
     const { open, activeItemIndex, featureList } = this.state;
 
-    // const feature = featureList.map((series, i) => {
-    //   return (
-    //     <SlideItem
-    //       key={i}
-    //       title={series.name}
-    //       image={series.poster_path}
-    //       body={series.date}
-    //     />)
-    // })
+    const feature = featureList.map((series, i) => {
+      return (
+        <SlideItem
+          key={i}
+          header={series.name}
+          image={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${series.poster_path}`}
+          body={series.date}
+        />)
+    })
 
     return (
       <Router>
@@ -140,35 +141,34 @@ class Index extends React.Component {
               </div>
             </Toolbar>
           </AppBar>
-          
-          <div>
-            {/* {feature} */}
-          </div>
-          {/* <ItemsCarousel
-            numberOfCards={3}
-            freeScrolling={false}
-            showSlither={false}
-            slidesToScroll={1}
-            firstAndLastGutter={false}
-            gutter={10}
+          <Grid container justify="center" spacing={18}>
+            <Grid item xs={12}>
+              <br></br>
+            </Grid>
+            <Grid item xs={12}>
+              <ItemsCarousel
+                numberOfCards={4}
+                freeScrolling={true}
+                showSlither={false}
+                slidesToScroll={1}
+                firstAndLastGutter={false}
+                gutter={10}
 
-            enablePlaceholder
-            minimumPlaceholderTime={2000}
-            numberOfPlaceholderItems={6}
-            appShellItem={<PlaceholderComponent />}
+                rightChevron={'>'}
+                leftChevron={'<'}
+                chevronWidth={20}
+                outsideChevron={true}
 
-            rightChevron={'>'}
-            leftChevron={'<'}
-            chevronWidth={20}
-            outsideChevron={true}
+                springConfig={{ "stiffness": 120, "damping": 14 }}
 
-            springConfig={{ "stiffness": 120, "damping": 14 }}
+                requestToChangeActive={() => this.setState({ activeItemIndex })}
+                activeItemIndex={activeItemIndex}
+                activePosition={'center'}
+                children={feature}
+              />
+            </Grid>
+          </Grid>
 
-            requestToChangeActive={() => this.setState({ activeItemIndex })}
-            activeItemIndex={activeItemIndex}
-            activePosition={'left'}
-            children={}
-          /> */}
         </div>
       </Router>
     );

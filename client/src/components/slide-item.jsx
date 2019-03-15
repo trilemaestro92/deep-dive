@@ -14,8 +14,11 @@ const styles = {
     maxWidth: 345,
   },
   media: {
-    height: 140,
+    height: 340,
+    backgroundSize: 'contain',
+    backgroundPosition: 'center'
   },
+  
 };
 
 function MediaCard(props) {
