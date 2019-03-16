@@ -18,6 +18,7 @@ import Grid from '@material-ui/core/Grid';
 import ItemsCarousel from 'react-items-carousel';
 
 import SlideItem from '../components/slide-item'
+import SlideItem2 from '../components/slide-item2'
 
 const styles = theme => ({
   root: {
@@ -112,7 +113,7 @@ class Index extends React.Component {
           key={i}
           header={series.name}
           image={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${series.poster_path}`}
-          body={series.overview}
+          // body={series.overview}
         />)
     })
 
@@ -143,10 +144,10 @@ class Index extends React.Component {
             </Toolbar>
           </AppBar>
           <Grid container justify="center" spacing={8}>
-            <Grid item xs={12}>
+            <Grid item xs={8} md={8} lg={12}>
               <br></br>
             </Grid>
-            <Grid item xs={8}>
+            <Grid item xs={12} md={6} lg={8}>
               <ItemsCarousel
                 numberOfCards={4}
                 freeScrolling={true}
@@ -159,12 +160,6 @@ class Index extends React.Component {
                 leftChevron={'B'}
                 chevronWidth={14}
                 outsideChevron={true}
-
-                // Active item configurations
-                requestToChangeActive={this.changeActiveItem}
-                activeItemIndex={activeItemIndex}
-                activePosition={'center'}
-
 
                 springConfig={{ "stiffness": 120, "damping": 14 }}
 
