@@ -84,7 +84,7 @@ class Index extends React.Component {
     open: false,
     featureList: [],
     children: [],
-    activeItemIndex: 0,
+    // activeItemIndex: 0,
   };
 
   async componentDidMount() {
@@ -100,6 +100,7 @@ class Index extends React.Component {
       open: true,
     });
   };
+  changeActiveItem = (activeItemIndex) => this.setState({ activeItemIndex });
 
   render() {
     const { classes } = this.props;
@@ -111,7 +112,7 @@ class Index extends React.Component {
           key={i}
           header={series.name}
           image={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${series.poster_path}`}
-          body={series.date}
+          body={series.overview}
         />)
     })
 
@@ -141,11 +142,11 @@ class Index extends React.Component {
               </div>
             </Toolbar>
           </AppBar>
-          <Grid container justify="center" spacing={18}>
+          <Grid container justify="center" spacing={8}>
             <Grid item xs={12}>
               <br></br>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={8}>
               <ItemsCarousel
                 numberOfCards={4}
                 freeScrolling={true}
@@ -154,10 +155,16 @@ class Index extends React.Component {
                 firstAndLastGutter={false}
                 gutter={10}
 
-                rightChevron={'>'}
-                leftChevron={'<'}
-                chevronWidth={20}
+                rightChevron={'B'}
+                leftChevron={'B'}
+                chevronWidth={14}
                 outsideChevron={true}
+
+                // Active item configurations
+                requestToChangeActive={this.changeActiveItem}
+                activeItemIndex={activeItemIndex}
+                activePosition={'center'}
+
 
                 springConfig={{ "stiffness": 120, "damping": 14 }}
 

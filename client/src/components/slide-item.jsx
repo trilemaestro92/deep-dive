@@ -14,7 +14,7 @@ const styles = {
     maxWidth: 345,
   },
   media: {
-    height: 340,
+    height: 300,
     backgroundSize: 'contain',
     backgroundPosition: 'center'
   },
