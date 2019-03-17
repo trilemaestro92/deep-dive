@@ -14,16 +14,20 @@ const theme = createMuiTheme({
         dark: '#000000',
         contrastText: '#fff',
       },
-      secondary: {
+    secondary: {
         light: '#ffffff',
         main: lime[50],
         dark: '#c6c8b5',
         contrastText: '#000',
       },
+      background:{
+        default: grey[900]
+      },  
   },
   typography: {
     useNextVariants: true,
   },
+  
 });
 
 function withRoot(Component) {
