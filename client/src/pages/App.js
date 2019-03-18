@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios'
+
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
@@ -10,14 +11,14 @@ import IconButton from '@material-ui/core/IconButton';
 import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
-import withRoot from '../withRoot';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import ItemsCarousel from 'react-items-carousel';
 
+
+import withRoot from '../withRoot';
 import SlideItem from '../components/slide-item'
+import Carousel from '../components/feature-carousel'
 
 const styles = theme => ({
   root: {
@@ -100,10 +101,12 @@ class Index extends React.Component {
       open: true,
     });
   };
-
+  changeActiveItem = (activeItemIndex) => this.setState({ activeItemIndex });
+  
   render() {
     const { classes } = this.props;
     const { open, activeItemIndex, featureList } = this.state;
+  
 
     const feature = featureList.map((series, i) => {
       return (
@@ -111,7 +114,7 @@ class Index extends React.Component {
           key={i}
           header={series.name}
           image={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${series.poster_path}`}
-          body={series.date}
+          // body={series.overview}
         />)
     })
 
@@ -141,30 +144,15 @@ class Index extends React.Component {
               </div>
             </Toolbar>
           </AppBar>
-          <Grid container justify="center" spacing={18}>
-            <Grid item xs={12}>
+          <Grid container justify="center" spacing={0}>
+            <Grid item xs={8} md={8} lg={12}>
               <br></br>
             </Grid>
-            <Grid item xs={12}>
-              <ItemsCarousel
-                numberOfCards={4}
-                freeScrolling={true}
-                showSlither={false}
-                slidesToScroll={1}
-                firstAndLastGutter={false}
-                gutter={10}
-
-                rightChevron={'>'}
-                leftChevron={'<'}
-                chevronWidth={20}
-                outsideChevron={true}
-
-                springConfig={{ "stiffness": 120, "damping": 14 }}
-
-                requestToChangeActive={() => this.setState({ activeItemIndex })}
-                activeItemIndex={activeItemIndex}
-                activePosition={'center'}
-                children={feature}
+            <Grid item xs={12} md={6} lg={8}>
+              <Carousel
+              children={feature}
+              activeItemIndex={activeItemIndex}
+              requestToChangeActive={() => this.setState({ activeItemIndex })}
               />
             </Grid>
           </Grid>

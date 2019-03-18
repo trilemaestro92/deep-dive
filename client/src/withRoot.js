@@ -9,21 +9,34 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 const theme = createMuiTheme({
   palette: {
     primary: {
-        light: '#484848',
-        main: grey[900],
-        dark: '#000000',
-        contrastText: '#fff',
-      },
-      secondary: {
-        light: '#ffffff',
-        main: lime[50],
-        dark: '#c6c8b5',
-        contrastText: '#000',
-      },
+      // light: '#3e3e3e',
+      main: grey[900],
+      // dark: '#000000',
+      contrastText: '#fff',
+    },
+    secondary: {
+      // light: '#ffffff',
+      main: lime[50],
+      // dark: '#c6c8b5',
+      contrastText: '#000',
+    },
+    background: {
+      default: '#282828'
+    },
+    text: {
+      primary: grey[100],
+      secondary: '#aaaaaa'
+    },
   },
   typography: {
     useNextVariants: true,
+    // fontWeightMedium: 500,
+    body1: {
+      fontWeight: 600,
+    },
+   
   },
+
 });
 
 function withRoot(Component) {
