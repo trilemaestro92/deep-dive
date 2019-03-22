@@ -14,7 +14,8 @@ import Typography from '@material-ui/core/Typography';
 const styles = {
   card: {
     maxWidth: 345,
-    backgroundColor:'#282828'
+    backgroundColor:'#282828',
+    boxShadow: '0px 0px 0px 0px rgba(0,0,0,0.2), 0px 0px 0px 0px rgba(0,0,0,0.14), 0px 0px 0px 0px rgba(0,0,0,0.12)'
   },
   media: {
     height: 290,
@@ -36,15 +37,14 @@ function MediaCard(props) {
           image={props.image}
           title={props.title}
         />
-        <CardContent className={classes.textBody} >
+        {/* <CardContent className={classes.textBody} >
           <Typography gutterBottom variant='body1' color='secondary'  component="h2" align='left'>
             {props.header}
           </Typography>
           <Typography variant='subtitle2' color='textSecondary' component="p">
-            {/* {props.body} */}
-            2019 • 
+            {props.desc}  •  {props.desc2} ratings
           </Typography>
-        </CardContent>
+        </CardContent> */}
       </CardActionArea>
       {/* <CardActions className={classes.textBody}>
         <Button size="small" color="primary">
