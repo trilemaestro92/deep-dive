@@ -21,7 +21,7 @@ const theme = createMuiTheme({
       contrastText: '#000',
     },
     background: {
-      default: '#282828'
+      default: '#1e1e1e'
     },
     text: {
       primary: grey[100],
@@ -30,11 +30,15 @@ const theme = createMuiTheme({
   },
   typography: {
     useNextVariants: true,
-    // fontWeightMedium: 500,
     body1: {
       fontWeight: 600,
     },
-   
+    h5:{
+      fontFamily: 'Pacifico'
+    }
+
+
+
   },
 
 });

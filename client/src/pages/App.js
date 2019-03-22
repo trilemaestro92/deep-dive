@@ -33,6 +33,7 @@ const styles = theme => ({
   },
   title: {
     display: 'none',
+    overflow: 'inherit',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
@@ -78,21 +79,28 @@ const styles = theme => ({
       },
     },
   },
+  introduction: {
+    margin: '40px 0px 40px 0px',
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }
 });
 
 class Index extends React.Component {
   state = {
     open: false,
+    myList: ['Mr. Robot', 'Dexter', 'Fargo'],
     featureList: [],
+    featureList2: [],
     children: [],
     activeItemIndex: 0,
   };
 
   async componentDidMount() {
-    const featureShows = await axios.get('https://api.themoviedb.org/3/tv/46648/recommendations?api_key=f8619d56f06b43eb341fd3d7340727fb&language=en-US&page=1')
-    console.log(featureShows.data.results)
+    const featureShows = await axios.get('https://api.themoviedb.org/3/list/107806?api_key=f8619d56f06b43eb341fd3d7340727fb&language=en-US')
+    console.log(featureShows.data.items)
     this.setState({
-      featureList: featureShows.data.results
+      featureList: featureShows.data.items
     })
   }
 
@@ -102,11 +110,11 @@ class Index extends React.Component {
     });
   };
   changeActiveItem = (activeItemIndex) => this.setState({ activeItemIndex });
-  
+
   render() {
     const { classes } = this.props;
     const { open, activeItemIndex, featureList } = this.state;
-  
+
 
     const feature = featureList.map((series, i) => {
       return (
@@ -114,21 +122,20 @@ class Index extends React.Component {
           key={i}
           header={series.name}
           image={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${series.poster_path}`}
-          // body={series.overview}
+          desc={series.first_air_date.substring(0, 4)}
+          desc2={series.vote_average}
         />)
     })
+
 
     return (
       <Router>
         <div className={classes.root}>
           <AppBar position="static">
             <Toolbar>
-              <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
-                <MenuIcon />
-              </IconButton>
-              <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+              <Typography className={classes.title} variant="h5" color="inherit" noWrap>
                 Deep Dive
-          </Typography>
+              </Typography>
               <div className={classes.grow} />
               <div className={classes.search}>
                 <div className={classes.searchIcon}>
@@ -145,14 +152,22 @@ class Index extends React.Component {
             </Toolbar>
           </AppBar>
           <Grid container justify="center" spacing={0}>
-            <Grid item xs={8} md={8} lg={12}>
-              <br></br>
+            <Grid item xs={12} md={8} lg={12}>
+              <div className={classes.introduction}>
+                <Typography variant="display3" color="secondary" noWrap>
+                  Deep Dive
+          </Typography>
+                <Typography variant="subheading" color="secondary" >
+                  Find breakdown for every episode from your favorite cryptic masterpiece
+          </Typography>
+
+              </div>
             </Grid>
             <Grid item xs={12} md={6} lg={8}>
               <Carousel
-              children={feature}
-              activeItemIndex={activeItemIndex}
-              requestToChangeActive={() => this.setState({ activeItemIndex })}
+                children={feature}
+                activeItemIndex={activeItemIndex}
+                requestToChangeActive={() => this.setState({ activeItemIndex })}
               />
             </Grid>
           </Grid>

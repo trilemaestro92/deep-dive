@@ -16,7 +16,7 @@ function FeatureCarousel(props) {
       showSlither={matches ? false: true}
       slidesToScroll={1}
       firstAndLastGutter={false}
-      gutter={25}
+      gutter={20}
 
       rightChevron={'>'}
       leftChevron={'<'}
