@@ -37,14 +37,14 @@ function MediaCard(props) {
           image={props.image}
           title={props.title}
         />
-        {/* <CardContent className={classes.textBody} >
+        <CardContent className={classes.textBody} >
           <Typography gutterBottom variant='body1' color='secondary'  component="h2" align='left'>
             {props.header}
           </Typography>
           <Typography variant='subtitle2' color='textSecondary' component="p">
             {props.desc}  •  {props.desc2} ratings
           </Typography>
-        </CardContent> */}
+        </CardContent>
       </CardActionArea>
       {/* <CardActions className={classes.textBody}>
         <Button size="small" color="primary">

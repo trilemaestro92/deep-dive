@@ -33,7 +33,7 @@ const styles = theme => ({
   },
   title: {
     display: 'none',
-    overflow:'inherit',
+    overflow: 'inherit',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
@@ -79,8 +79,8 @@ const styles = theme => ({
       },
     },
   },
-  introduction:{
-    margin: '100px 0px 50px 0px',
+  introduction: {
+    margin: '40px 0px 40px 0px',
     textAlign: 'center',
     color: theme.palette.text.secondary,
   }
@@ -135,7 +135,7 @@ class Index extends React.Component {
             <Toolbar>
               <Typography className={classes.title} variant="h5" color="inherit" noWrap>
                 Deep Dive
-          </Typography>
+              </Typography>
               <div className={classes.grow} />
               <div className={classes.search}>
                 <div className={classes.searchIcon}>
@@ -152,11 +152,16 @@ class Index extends React.Component {
             </Toolbar>
           </AppBar>
           <Grid container justify="center" spacing={0}>
-            <Grid item xs={8} md={8} lg={12}>
-            <Typography className={classes.introduction} variant="display3" color="inherit" noWrap>
-                Deep Dive
+            <Grid item xs={12} md={8} lg={12}>
+              <div className={classes.introduction}>
+                <Typography variant="display3" color="secondary" noWrap>
+                  Deep Dive
           </Typography>
-              <br></br>
+                <Typography variant="subheading" color="secondary" >
+                  Find breakdown for every episode from your favorite cryptic masterpiece
+          </Typography>
+
+              </div>
             </Grid>
             <Grid item xs={12} md={6} lg={8}>
               <Carousel
