@@ -16,6 +16,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import Grid from '@material-ui/core/Grid';
 
 
+
 import withRoot from '../withRoot';
 import SlideItem from '../components/slide-item'
 import Carousel from '../components/feature-carousel'
@@ -89,7 +90,6 @@ const styles = theme => ({
 class Index extends React.Component {
   state = {
     open: false,
-    myList: ['Mr. Robot', 'Dexter', 'Fargo'],
     featureList: [],
     featureList2: [],
     children: [],
@@ -154,12 +154,12 @@ class Index extends React.Component {
           <Grid container justify="center" spacing={0}>
             <Grid item xs={12} md={8} lg={12}>
               <div className={classes.introduction}>
-                <Typography variant="display3" color="secondary" noWrap>
-                  Deep Dive
+                <Typography variant="display1" color="secondary" noWrap>
+                  Deep Dive into ... 
           </Typography>
-                <Typography variant="subheading" color="secondary" >
+                {/* <Typography variant="caption" color="secondary" >
                   Find breakdown for every episode from your favorite cryptic masterpiece
-          </Typography>
+          </Typography> */}
 
               </div>
             </Grid>

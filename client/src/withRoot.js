@@ -35,6 +35,9 @@ const theme = createMuiTheme({
     },
     h5:{
       fontFamily: 'Pacifico'
+    },
+    caption:{
+      fontSize: '15px'
     }
 
 
